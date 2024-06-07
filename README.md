@@ -177,7 +177,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## Contact
 
 For any questions or issues, please contact me at [jonathan@thoughtwave.com].
-
----
-
-This README file provides an overview of the `watchdog` tool, its features, installation instructions, usage examples, and configuration details. Use this as a reference to set up and run `watchdog` in your environment.
