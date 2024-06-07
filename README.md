@@ -31,6 +31,73 @@ cd watchdog
 go build -o watchdog
 ```
 
+3. Install the binary (Linux and *BSD instructions):
+```sh
+sudo mv watchdog /usr/sbin/watchdog && sudo chmod ugo+x /usr/sbin/watchdog
+```
+
+4. Set up the service to run at boot on a server:
+- **Linux**: 
+  ```sh
+  cat > /etc/systemd/system/watchdog.service <<EOF
+  [Unit]
+  Description=watchdog Service
+  Wants=network-online.target
+  After=network-online.target
+
+  [Service]
+  User=root
+  Group=root
+  Type=simple
+  ExecStart=/usr/sbin/watchdog --server --foreground
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+
+  systemctl daemon-reload
+
+  systemctl enable watchdog
+
+  systemctl start watchdog
+
+  ```
+
+- **OpenBSD**:
+  ```sh
+  echo "/usr/sbin/watchdog --server" >> /etc/rc.local
+  ```
+
+5. Set up the service to run at boot on a client:
+- **Linux**: 
+  ```sh
+  cat > /etc/systemd/system/watchdog-client.service <<EOF
+  [Unit]
+  Description=watchdog Service
+  Wants=network-online.target
+  After=network-online.target
+
+  [Service]
+  User=root
+  Group=root
+  Type=simple
+  ExecStart=/usr/sbin/watchdog --client --foreground
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+
+  systemctl daemon-reload
+
+  systemctl enable watchdog-client
+
+  systemctl start watchdog-client
+
+  ```
+
+- **OpenBSD**:
+  ```sh
+  echo "/usr/sbin/watchdog --client" >> /etc/rc.local
+  ```
+
 ## Usage
 
 ### Command Line Options
@@ -62,7 +129,7 @@ Usage: watchdog --key <key> --server | --client --remote <remote-host> [--port <
 #### Client Mode
 
 ```sh
-./watchdog --key mysecretkey --client --remote 127.0.0.1 --port 4848 --timeout 600 --logs /var/log/watchdog.log --foreground
+./watchdog --key mysecretkey --client --remote watchdog-server.example.com --port 4848 --timeout 600 --logs /var/log/watchdog.log --foreground
 ```
 
 ### Configuration File
