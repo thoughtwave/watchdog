@@ -1,7 +1,7 @@
 
 # Watchdog
 
-`watchdog` is a simple TCP-based heartbeat monitoring tool. It can run in either server or client mode, allowing for the monitoring of remote systems and the execution of specified scripts upon heartbeat failures.  It is designed to run in place of a hardware watchdog timer, which may not be available on every platform.  It uses a simple pre-shared key to allow a heartbeat conversation.  Multiple copies of the client can run on a given system and speak to multiple servers monitoring them, for a full mesh of availability.  This was written to ensure uptime availability of OpenBSD 7.5 edge routers, sometimes in instances where they are virtualized don't necessarily have hardware watchdog timers.
+`watchdog` is a simple TCP-based heartbeat monitoring tool. It can run in either server or client mode, allowing for the monitoring of remote systems and the execution of specified scripts upon heartbeat failures.  It is designed to run in place of a hardware watchdog timer, which may not be available on every platform.  It uses a simple pre-shared key to allow a heartbeat conversation.  Multiple copies of the client can run on a given system and speak to multiple servers monitoring them, for a full mesh of availability.  This was written to ensure uptime availability of OpenBSD edge routers, sometimes in instances where they are virtualized don't necessarily have hardware watchdog timers.
 
 ## Features
 
@@ -21,7 +21,7 @@ Make sure that you have at least Go 1.11.x available.  This has not been tested 
 1. Clone the repository:
 
 ```sh
-git clone <repository-url>
+git clone git@github.com:thoughtwave/watchdog.git
 cd watchdog
 ```
 
