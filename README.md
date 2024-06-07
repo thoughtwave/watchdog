@@ -28,7 +28,7 @@ cd watchdog
 2. Build the binary:
 
 ```sh
-go build -o watchdog
+go build -o watchdog watchdog.go
 ```
 
 3. Install the binary (Linux and *BSD instructions):
